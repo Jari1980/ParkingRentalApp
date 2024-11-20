@@ -43,7 +43,7 @@ public class CustomerDAOImpl implements CustomerDAO{
     @Override
     public Customer findByReservationId(int id) {
         for(Customer ele : customerList){
-            if(ele == id){
+            if(ele.getId() == id){
                 return ele;
             }
         }

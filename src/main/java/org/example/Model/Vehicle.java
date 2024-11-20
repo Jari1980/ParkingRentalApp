@@ -5,12 +5,12 @@ import org.example.DAO.CustomerDAO;
 public class Vehicle {
     private String licensePlate;
     private VehicleType vehicleType;
-    private CustomerDAO customerDAO;
+    //private CustomerDAO customerDAO;
 
-    public Vehicle(String licensePlate, VehicleType vehicleType, CustomerDAO customerDAO) {
+    public Vehicle(String licensePlate, VehicleType vehicleType) {
         this.licensePlate = licensePlate;
         this.vehicleType = vehicleType;
-        this.customerDAO = customerDAO;
+        //this.customerDAO = customerDAO;
     }
 
     public void setLicensePlate(String licensePlate) {
@@ -19,9 +19,9 @@ public class Vehicle {
     public void setVehicleType(VehicleType vehicleType) {
         this.vehicleType = vehicleType;
     }
-    public void setCustomer(CustomerDAO customerDAO) {
+    /*public void setCustomer(CustomerDAO customerDAO) {
         this.customerDAO = customerDAO;
-    }
+    }*/
 
     public String getLicensePlate() {
         return licensePlate;
@@ -29,7 +29,8 @@ public class Vehicle {
     public VehicleType getVehicleType() {
         return vehicleType;
     }
-    public CustomerDAO getCustomer() {
+
+    /*public CustomerDAO getCustomer() {
         return customerDAO;
-    }
+    }*/
 }
