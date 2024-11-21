@@ -10,6 +10,15 @@ import java.util.List;
 public class ParkingSpotDAOImpl implements ParkingSpotDAO{
     private Collection<ParkingSpot> parkingSpots = new ArrayList<>();
 
+    private static ParkingSpotDAOImpl instance;
+
+    public static ParkingSpotDAOImpl getInstance(){
+        if(instance == null){
+            instance = new ParkingSpotDAOImpl();
+        }
+        return instance;
+    }
+
     public ParkingSpotDAOImpl() {
     }
 
@@ -31,13 +40,15 @@ public class ParkingSpotDAOImpl implements ParkingSpotDAO{
     }
 
     @Override
-    public void removeParkingSpotById(int id) {
+    public boolean removeParkingSpotById(int id) {
         //parkingSpots.removeIf(parkingSpot -> parkingSpot.getSpotNumber() == id);
         for(ParkingSpot ele : parkingSpots){
             if(ele.getSpotNumber() == id){
                 parkingSpots.remove(ele);
+                return true;
             }
         }
+        return false;
     }
 
     @Override

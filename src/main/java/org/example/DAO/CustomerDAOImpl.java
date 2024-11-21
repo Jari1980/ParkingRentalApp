@@ -5,16 +5,30 @@ import org.example.Model.Customer;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class CustomerDAOImpl implements CustomerDAO{
+
     private Collection<Customer> customerList = new ArrayList<>();
 
-    public CustomerDAOImpl() {
+    private static CustomerDAOImpl instance;
+
+    public static CustomerDAOImpl getInstance(){
+        if(instance == null){
+            instance = new CustomerDAOImpl();
+        }
+        return instance;
+    }
+
+    private CustomerDAOImpl() {
     }
 
     @Override
     public Customer createCustomer(Customer customer) {
+        if(customer == null){
+            throw new IllegalArgumentException("Customer was null");
+        }
         int id = CustomerCounter.getCounter();
         customer = new Customer(id, customer.getName(), customer.getPhone(), customer.getEmail());
         customerList.add(customer);
@@ -32,18 +46,20 @@ public class CustomerDAOImpl implements CustomerDAO{
     }
 
     @Override
-    public void removeById(int id) {
+    public boolean removeById(int id) {
         for(Customer ele : customerList){
             if(ele.getId() == id){
                 customerList.remove(ele);
+                return true;
             }
         }
+        return false;
     }
 
     @Override
     public Customer findByReservationId(int id) {
         for(Customer ele : customerList){
-            if(ele.getId() == id){
+            if(ele.getReservation().getId() == id){
                 return ele;
             }
         }
@@ -52,6 +68,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 
     @Override
     public Collection<Customer> findAll() {
-        return customerList;
+        return Collections.unmodifiableCollection(customerList);
+        //return customerList;
     }
 }
