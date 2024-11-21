@@ -7,7 +7,7 @@ import java.util.Collection;
 public interface VehicleDAO {
     Vehicle createVehicle(Vehicle vehicle);
     Vehicle findByPlate(String plate);
-    void removeVehicleByPlate(String plate);
+    boolean removeVehicleByPlate(String plate);
     Vehicle updateVehicle(Vehicle vehicle);
     Collection<Vehicle> findAll();
 }
